@@ -1,0 +1,7 @@
+[package]
+name = "cvrp-genetic"
+version = "0.1.0"
+authors = ["Krystian Chmura <Krystian.Chmura.ctr@sabre.com>"]
+
+[dependencies]
+clap = "~2.27.0"
