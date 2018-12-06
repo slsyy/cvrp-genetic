@@ -1,276 +1,51 @@
 {
-    "nodes": {
-        "1": {
-            "x": 0.0,
-            "y": 0.0,
-            "isDepot": true,
-            "demand": 0
-        },
-        "2": {
-            "x": 3.0,
-            "y": 5.0,
-            "isDepot": false,
-            "demand": 33
-        },
-        "3": {
-            "x": 2.5,
-            "y": 9.0,
-            "isDepot": false,
-            "demand": 15
-        },
-        "4": {
-            "x": 48.0,
-            "y": 16.0,
-            "isDepot": false,
-            "demand": 10
-        },
-        "5": {
-            "x": 48.0,
-            "y": 17.0,
-            "isDepot": false,
-            "demand": 40
-        },
-        "6": {
-            "x": 69.0,
-            "y": 16.0,
-            "isDepot": false,
-            "demand": 15
-        },
-        "7": {
-            "x": 70.0,
-            "y": 16.0,
-            "isDepot": false,
-            "demand": 5
-        },
-        "8": {
-            "x": 64.0,
-            "y": 13.0,
-            "isDepot": false,
-            "demand": 77
-        },
-        "9": {
-            "x": 3.0,
-            "y": -22.0,
-            "isDepot": false,
-            "demand": 435
-        },
-        "10": {
-            "x": 2.5,
-            "y": 1.0,
-            "isDepot": false,
-            "demand": 165
-        },
-        "11": {
-            "x": -13.0,
-            "y": 11.5,
-            "isDepot": false,
-            "demand": 120
-        },
-        "12": {
-            "x": -20.0,
-            "y": 45.0,
-            "isDepot": false,
-            "demand": 65
-        },
-        "13": {
-            "x": -9.0,
-            "y": 52.0,
-            "isDepot": false,
-            "demand": 23
-        },
-        "14": {
-            "x": -8.5,
-            "y": 53.0,
-            "isDepot": false,
-            "demand": 18
-        },
-        "15": {
-            "x": -8.0,
-            "y": 52.0,
-            "isDepot": false,
-            "demand": 550
-        },
-        "16": {
-            "x": 2.0,
-            "y": 2.0,
-            "isDepot": false,
-            "demand": 78
-        },
-        "17": {
-            "x": -2.0,
-            "y": 9.0,
-            "isDepot": false,
-            "demand": 627
-        },
-        "18": {
-            "x": -10.0,
-            "y": 20.0,
-            "isDepot": false,
-            "demand": 9
-        },
-        "19": {
-            "x": -20.0,
-            "y": 19.0,
-            "isDepot": false,
-            "demand": 96
-        },
-        "20": {
-            "x": -15.0,
-            "y": -21.0,
-            "isDepot": false,
-            "demand": 116
-        },
-        "21": {
-            "x": -5.0,
-            "y": -9.0,
-            "isDepot": false,
-            "demand": 116
-        },
-        "22": {
-            "x": -4.5,
-            "y": -9.0,
-            "isDepot": false,
-            "demand": 83
-        },
-        "23": {
-            "x": -52.0,
-            "y": -36.0,
-            "isDepot": false,
-            "demand": 41
-        },
-        "24": {
-            "x": -53.0,
-            "y": -36.0,
-            "isDepot": false,
-            "demand": 645
-        },
-        "25": {
-            "x": 0.0,
-            "y": 0.01,
-            "isDepot": false,
-            "demand": 694
-        },
-        "26": {
-            "x": -30.0,
-            "y": -18.0,
-            "isDepot": false,
-            "demand": 573
-        },
-        "27": {
-            "x": -51.0,
-            "y": -35.0,
-            "isDepot": false,
-            "demand": 1
-        },
-        "28": {
-            "x": 81.0,
-            "y": 9.0,
-            "isDepot": false,
-            "demand": 181
-        },
-        "29": {
-            "x": 84.0,
-            "y": -99.0,
-            "isDepot": false,
-            "demand": 106
-        },
-        "30": {
-            "x": 82.0,
-            "y": -6.0,
-            "isDepot": false,
-            "demand": 52
-        },
-        "31": {
-            "x": 40.0,
-            "y": -12.0,
-            "isDepot": false,
-            "demand": 117
-        },
-        "32": {
-            "x": 50.0,
-            "y": -7.0,
-            "isDepot": false,
-            "demand": 52
-        },
-        "33": {
-            "x": 51.0,
-            "y": -8.0,
-            "isDepot": false,
-            "demand": 1300
-        },
-        "34": {
-            "x": 63.0,
-            "y": -17.0,
-            "isDepot": false,
-            "demand": 57
-        },
-        "35": {
-            "x": 45.0,
-            "y": -1.0,
-            "isDepot": false,
-            "demand": 28
-        },
-        "36": {
-            "x": 54.0,
-            "y": 8.5,
-            "isDepot": false,
-            "demand": 84
-        },
-        "37": {
-            "x": 29.0,
-            "y": 4.0,
-            "isDepot": false,
-            "demand": 1
-        },
-        "38": {
-            "x": 21.0,
-            "y": 3.0,
-            "isDepot": false,
-            "demand": 54
-        },
-        "39": {
-            "x": 22.0,
-            "y": 2.0,
-            "isDepot": false,
-            "demand": 19
-        },
-        "40": {
-            "x": 39.0,
-            "y": -3.0,
-            "isDepot": false,
-            "demand": 88
-        },
-        "41": {
-            "x": 39.5,
-            "y": -3.0,
-            "isDepot": false,
-            "demand": 41
-        },
-        "42": {
-            "x": 40.0,
-            "y": -11.0,
-            "isDepot": false,
-            "demand": 238
-        },
-        "43": {
-            "x": 28.0,
-            "y": -2.0,
-            "isDepot": false,
-            "demand": 66
-        },
-        "44": {
-            "x": 24.0,
-            "y": -18.0,
-            "isDepot": false,
-            "demand": 44
-        },
-        "45": {
-            "x": 24.0,
-            "y": -19.0,
-            "isDepot": false,
-            "demand": 42
-        }
-    },
-    "edgeWeightType": "EUC_2D",
-    "capacity": 2010
+  "nodes": {
+    "1": {"x": 0, "y": 0, "isDepot": true, "demand": 0},
+    "2": {"x": 3, "y": 5, "isDepot": false, "demand": 33},
+    "3": {"x": 2.5, "y": 9, "isDepot": false, "demand": 15},
+    "4": {"x": 48, "y": 16, "isDepot": false, "demand": 10},
+    "5": {"x": 48, "y": 17, "isDepot": false, "demand": 40},
+    "6": {"x": 69, "y": 16, "isDepot": false, "demand": 15},
+    "7": {"x": 70, "y": 16, "isDepot": false, "demand": 5},
+    "8": {"x": 64, "y": 13, "isDepot": false, "demand": 77},
+    "9": {"x": 3, "y": -22, "isDepot": false, "demand": 435},
+    "10": {"x": 2.5, "y": 1, "isDepot": false, "demand": 165},
+    "11": {"x": -13, "y": 11.5, "isDepot": false, "demand": 120},
+    "12": {"x": -20, "y": 45, "isDepot": false, "demand": 65},
+    "13": {"x": -9, "y": 52, "isDepot": false, "demand": 23},
+    "14": {"x": -8.5, "y": 53, "isDepot": false, "demand": 18},
+    "15": {"x": -8, "y": 52, "isDepot": false, "demand": 550},
+    "16": {"x": 2, "y": 2, "isDepot": false, "demand": 78},
+    "17": {"x": -2, "y": 9, "isDepot": false, "demand": 627},
+    "18": {"x": -10, "y": 20, "isDepot": false, "demand": 9},
+    "19": {"x": -20, "y": 19, "isDepot": false, "demand": 96},
+    "20": {"x": -15, "y": -21, "isDepot": false, "demand": 116},
+    "21": {"x": -5, "y": -9, "isDepot": false, "demand": 116},
+    "22": {"x": -4.5, "y": -9, "isDepot": false, "demand": 83},
+    "23": {"x": -52, "y": -36, "isDepot": false, "demand": 41},
+    "24": {"x": -53, "y": -36, "isDepot": false, "demand": 645},
+    "25": {"x": 0, "y": 0.01, "isDepot": false, "demand": 694},
+    "26": {"x": -30, "y": -18, "isDepot": false, "demand": 573},
+    "27": {"x": -51, "y": -35, "isDepot": false, "demand": 1},
+    "28": {"x": 81, "y": 9, "isDepot": false, "demand": 181},
+    "29": {"x": 84, "y": -99, "isDepot": false, "demand": 106},
+    "30": {"x": 82, "y": -6, "isDepot": false, "demand": 52},
+    "31": {"x": 40, "y": -12, "isDepot": false, "demand": 117},
+    "32": {"x": 50, "y": -7, "isDepot": false, "demand": 52},
+    "33": {"x": 51, "y": -8, "isDepot": false, "demand": 1300},
+    "34": {"x": 63, "y": -17, "isDepot": false, "demand": 57},
+    "35": {"x": 45, "y": -1, "isDepot": false, "demand": 28},
+    "36": {"x": 54, "y": 8.5, "isDepot": false, "demand": 84},
+    "37": {"x": 29, "y": 4, "isDepot": false, "demand": 1},
+    "38": {"x": 21, "y": 3, "isDepot": false, "demand": 54},
+    "39": {"x": 22, "y": 2, "isDepot": false, "demand": 19},
+    "40": {"x": 39, "y": -3, "isDepot": false, "demand": 88},
+    "41": {"x": 39.5, "y": -3, "isDepot": false, "demand": 41},
+    "42": {"x": 40, "y": -11, "isDepot": false, "demand": 238},
+    "43": {"x": 28, "y": -2, "isDepot": false, "demand": 66},
+    "44": {"x": 24, "y": -18, "isDepot": false, "demand": 44},
+    "45": {"x": 24, "y": -19, "isDepot": false, "demand": 42}
+  },
+  "edgeWeightType": "EUC_2D",
+  "capacity": 2010
 }

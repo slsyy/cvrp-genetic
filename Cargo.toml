@@ -1,10 +1,15 @@
 [package]
 name = "cvrp-genetic"
 version = "0.1.0"
-authors = ["Krystian Chmura <Krystian.Chmura.ctr@sabre.com>"]
+authors = ["Krystian Chmura <Krystian.Chmura@gmail.com>"]
 
 [dependencies]
 clap = "~2.27.0"
 serde = "1.0.80"
 serde_derive = "1.0.80"
 serde_json = "1.0.32"
+nalgebra = "0.16.12"
+rand = "0.6"
+
+[profile.release]
+lto = true
