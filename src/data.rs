@@ -30,9 +30,42 @@ impl Data {
             index_to_id: index_to_id,
         }
     }
+
     pub fn calculate_cost(&self, path: &[NodeIndex]) -> isize {
         let mut cost: Cost = 0;
+
         let mut previous_n: NodeIndex = self.depot;
+
+        self.traverse_path(path, &mut |n| {
+            cost += self.distance_matrix[(n, previous_n)];
+            previous_n = n;
+        });
+
+        cost
+    }
+
+    pub fn indices_path_to_index(&self, path: &[NodeIndex]) -> Vec<Vec<description::NodeID>> {
+        let mut res: Vec<Vec<description::NodeID>> = Vec::new();
+
+        self.traverse_path(path, &mut |n| {
+            if n == self.depot {
+                if let Some(current_path) = res.last_mut() {
+                    current_path.push(self.index_to_id.get(n).unwrap().clone());
+                }
+                res.push(Vec::new());
+            }
+
+            let current_path = res.last_mut().unwrap();
+            current_path.push(self.index_to_id.get(n).unwrap().clone());
+        });
+
+        res.pop();
+        res
+    }
+
+    fn traverse_path(&self, path: &[NodeIndex], f: &mut impl FnMut(NodeIndex) -> ()) {
+        f(self.depot);
+
         let mut current_cargo: Capacity = self.capacity;
 
         for &n in path.iter() {
@@ -40,18 +73,16 @@ impl Data {
 
             // back to depot
             if current_cargo < demand {
-                cost += self.distance_matrix[(n, self.depot)];
-                previous_n = self.depot;
                 current_cargo = self.capacity;
+                f(self.depot);
             }
 
             assert!(current_cargo >= demand);
-            cost += self.distance_matrix[(previous_n, n)];
             current_cargo -= demand;
-            previous_n = n;
+            f(n);
         }
 
-        cost
+        f(self.depot);
     }
 }
 

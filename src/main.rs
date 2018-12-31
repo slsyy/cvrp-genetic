@@ -21,6 +21,13 @@ mod description;
 extern crate serde;
 extern crate serde_json;
 
+#[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
+struct Output {
+    pub description: description::Description,
+    pub best_path: Vec<Vec<description::NodeID>>,
+}
+
 fn main() {
     let input_file_path = parse_args();
     let desc = read_description(&input_file_path).unwrap();
@@ -28,16 +35,24 @@ fn main() {
 
     let mut rng = SmallRng::from_entropy();
 
-    let mut population: Vec<usize> = (0..data.index_to_id.len()).collect();
+    let mut population: Vec<usize> = (0..data.index_to_id.len()).filter(|&i| i != data.depot).collect();
+
     let mut cost = 100000;
-    loop {
+    for i in 0..104090 {
         population.shuffle(&mut rng);
         let new_cost = data.calculate_cost(&population);
         if new_cost < cost {
             cost = new_cost;
-            println!("{:?}", &cost);
+            eprintln!("Iteration: {}, {}", i, &cost);
         }
     }
+
+    let output = Output {
+        description: desc,
+        best_path: data.indices_path_to_index(&population)
+    };
+
+    println!("{}", serde_json::to_string(&output).unwrap());
 }
 
 fn parse_args() -> String {
