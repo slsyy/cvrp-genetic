@@ -6,12 +6,11 @@ import json
 import matplotlib.pyplot as plt
 import networkx as nx
 
-
-
 j = json.load(sys.stdin)
 
 nodes = j["description"]["nodes"]
 best_path = j["bestPath"]
+best_solution_performance = j["bestSolutionPerformance"]
 
 G = nx.DiGraph()
 
@@ -45,9 +44,12 @@ for i, path in enumerate(best_path):
 nodes = G.nodes()
 edges = G.edges()
 
-pos=nx.spring_layout(G, pos=nx.get_node_attributes(G, 'pos'), iterations=3)
+pos=nx.get_node_attributes(G, 'pos')
+pos=nx.spring_layout(G, pos=nx.get_node_attributes(G, 'pos'), iterations=10000)
 
 plt.style.use('Solarize_Light2')
+
+plt.subplot(121)
 nx.draw_networkx(
     G, 
     alpha=0.5,
@@ -56,4 +58,15 @@ nx.draw_networkx(
     node_size=[G.node[n]["size"] for n in nodes],
     edge_color=[G[x][y]["color"] for (x, y)in edges]
 )
+plt.title("Best solution visualization")
+
+plt.subplot(122)
+x = [x[0] for x in best_solution_performance]
+y = [x[1] for x in best_solution_performance]
+plt.scatter(x, y, c="#E91E63")
+plt.xlabel("Generation")
+plt.gca().set_xscale("log")
+plt.ylabel("Cost")
+plt.title("Best solution performance")
+
 plt.show()

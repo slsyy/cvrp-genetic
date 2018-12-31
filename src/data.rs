@@ -2,10 +2,10 @@ use description;
 
 use std::collections::HashMap;
 
-type NodeIndex = usize;
+pub type NodeIndex = usize;
 type Capacity = isize;
 
-type Cost = isize;
+pub type Cost = isize;
 type DistanceMatrix = na::base::DMatrix<Cost>;
 
 pub struct Data {
@@ -31,7 +31,7 @@ impl Data {
         }
     }
 
-    pub fn calculate_cost(&self, path: &[NodeIndex]) -> isize {
+    pub fn calculate_cost(&self, path: &[NodeIndex]) -> Cost {
         let mut cost: Cost = 0;
 
         let mut previous_n: NodeIndex = self.depot;
@@ -71,7 +71,6 @@ impl Data {
         for &n in path.iter() {
             let demand: Capacity = self.nodes_demand[n];
 
-            // back to depot
             if current_cargo < demand {
                 current_cargo = self.capacity;
                 f(self.depot);
