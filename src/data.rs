@@ -3,9 +3,9 @@ use description;
 use std::collections::HashMap;
 
 pub type NodeIndex = usize;
-type Capacity = isize;
+type Capacity = i32;
 
-pub type Cost = isize;
+pub type Cost = i32;
 type DistanceMatrix = na::base::DMatrix<Cost>;
 
 pub struct Data {
@@ -76,7 +76,6 @@ impl Data {
                 f(self.depot);
             }
 
-            assert!(current_cargo >= demand);
             current_cargo -= demand;
             f(n);
         }
@@ -124,7 +123,7 @@ fn get_depot(
 
     nodes_order
         .iter()
-        .position(|ref n| *n == depot_nodes_ids[0])
+        .position(|n| n == depot_nodes_ids[0])
         .unwrap()
 }
 
@@ -134,6 +133,6 @@ fn get_node_demand(
 ) -> Vec<Capacity> {
     nodes_order
         .iter()
-        .map(|ref node_id| nodes.get(*node_id).unwrap().demand)
+        .map(|node_id| nodes.get(node_id).unwrap().demand)
         .collect()
 }

@@ -45,11 +45,13 @@ nodes = G.nodes()
 edges = G.edges()
 
 pos=nx.get_node_attributes(G, 'pos')
-pos=nx.spring_layout(G, pos=nx.get_node_attributes(G, 'pos'), iterations=10000)
+# pos=nx.spring_layout(G, pos=nx.get_node_attributes(G, 'pos'), iterations=10000)
 
 plt.style.use('Solarize_Light2')
 
 plt.subplot(121)
+plt.xlabel("X")
+plt.ylabel("Y")
 nx.draw_networkx(
     G, 
     alpha=0.5,
@@ -58,15 +60,20 @@ nx.draw_networkx(
     node_size=[G.node[n]["size"] for n in nodes],
     edge_color=[G[x][y]["color"] for (x, y)in edges]
 )
-plt.title("Best solution visualization")
 
 plt.subplot(122)
 x = [x[0] for x in best_solution_performance]
 y = [x[1] for x in best_solution_performance]
 plt.scatter(x, y, c="#E91E63")
 plt.xlabel("Generation")
-plt.gca().set_xscale("log")
+
+xticks = [i for i in list(plt.xticks()[0]) if i < x[-1]][:-1]  + [x[-1]]
+yticks = [i for i in list(plt.yticks()[0]) if i > y[-1]][1:]  + [y[-1]]
+
+plt.xticks(xticks)
+plt.yticks(yticks)
+plt.xlim(left=-0.05*max(x))
+
 plt.ylabel("Cost")
-plt.title("Best solution performance")
 
 plt.show()
