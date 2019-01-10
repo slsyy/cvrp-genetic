@@ -2,6 +2,7 @@
 name = "cvrp-genetic"
 version = "0.1.0"
 authors = ["Krystian Chmura <Krystian.Chmura@gmail.com>"]
+edition = "2018"
 
 [dependencies]
 clap = "~2.27.0"

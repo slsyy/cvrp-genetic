@@ -1,4 +1,4 @@
-use description;
+use crate::description;
 
 use std::collections::HashMap;
 
@@ -6,7 +6,7 @@ pub type NodeIndex = usize;
 type Capacity = i32;
 
 pub type Cost = i32;
-type DistanceMatrix = na::base::DMatrix<Cost>;
+type DistanceMatrix = nalgebra::base::DMatrix<Cost>;
 
 pub struct Data {
     pub distance_matrix: DistanceMatrix,

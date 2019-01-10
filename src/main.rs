@@ -1,18 +1,14 @@
-#[macro_use]
-extern crate serde_derive;
+use serde_derive::{Deserialize, Serialize};
+use serde_json;
 
-extern crate clap;
 use clap::App;
 use clap::Arg;
-
-extern crate nalgebra as na;
 
 use std::cmp;
 use std::error::Error;
 use std::fs::File;
 use std::mem;
 
-extern crate rand;
 use rand::rngs::SmallRng;
 use rand::seq::SliceRandom;
 use rand::FromEntropy;
@@ -21,10 +17,6 @@ use rand::Rng;
 mod data;
 mod description;
 
-extern crate serde;
-extern crate serde_json;
-
-extern crate indicatif;
 use indicatif::ProgressBar;
 
 #[derive(Serialize, Deserialize, Debug)]
