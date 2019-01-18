@@ -10,9 +10,9 @@ cargo build --release
 ## Requirements
 
 * Rust and Cargo: install stable toolchain via https://github.com/rust-lang/rustup.rs
-* Python3: install dependecies using ```pip3 install -r requirements.txt```  
+* Python3: install dependecies using ```pip3 install -r requirements.txt``` command
 
-## Examples
+## Examples results
 
 F-n45-k4.vrp problem:
 ![](pictures/Small.png)

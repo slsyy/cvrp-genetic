@@ -9,8 +9,6 @@ use serde_json;
 use clap::App;
 use clap::Arg;
 
-use rayon::prelude::*;
-
 use std::error::Error;
 use std::fs::File;
 

@@ -4,12 +4,19 @@ use std::cmp;
 use std::mem;
 
 use indicatif::ProgressBar;
+use indicatif::ProgressStyle;
+
 use rand::rngs::SmallRng;
 use rand::seq::SliceRandom;
 use rand::FromEntropy;
 use rand::Rng;
 
-use rayon::prelude::*;
+use rayon::iter::IntoParallelRefIterator;
+use rayon::prelude::ParallelIterator;
+
+use std::collections::hash_map::DefaultHasher;
+use std::collections::HashSet;
+use std::hash::{Hash, Hasher};
 
 pub struct BestPath {
     pub best_path: Vec<data::NodeIndex>,
@@ -19,12 +26,11 @@ pub struct BestPath {
 pub type IterationNumber = usize;
 
 pub fn find_best_path(data: &data::Data, iteration_number: IterationNumber) -> BestPath {
-    let population_size = ((0.5 * data.index_to_id.len() as f64).powf(2.0)) as usize;
+    let population_size = ((0.7 * data.index_to_id.len() as f64).powf(2.0)) as usize;
     let survivor_number = (population_size as f64).sqrt() as usize;
-    let elite_survivor_nubmer = (survivor_number as f64 * 0.1).ceil() as usize;
 
-    let crossover_rate = 0.5;
-    let mutation_rate = 0.01;
+    let crossover_rate = 0.7;
+    let mutation_rate = 0.02;
 
     let mut best_solution_performance = Vec::new();
 
@@ -35,6 +41,10 @@ pub fn find_best_path(data: &data::Data, iteration_number: IterationNumber) -> B
     let mut rng = SmallRng::from_entropy();
 
     let bar = ProgressBar::new(iteration_number as u64);
+    bar.set_style(ProgressStyle::default_bar()
+    .template("{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}]{pos:>7}/{len:7} [{msg}] ({eta})")
+    .progress_chars("#>-"));
+
     for i in 0..iteration_number {
         bar.inc(1);
 
@@ -51,9 +61,9 @@ pub fn find_best_path(data: &data::Data, iteration_number: IterationNumber) -> B
             .unwrap();
 
         if best_in_iteration.0 < best_so_far.0 {
-            eprintln!("Iteration: {}, New lowest cost: {}", i, best_in_iteration.0);
             best_so_far = (best_in_iteration.0, best_in_iteration.1.to_owned());
             best_solution_performance.push((i, best_in_iteration.0));
+            bar.set_message(&format!("Best result: {}", best_so_far.0));
         }
 
         let survivors =
@@ -94,6 +104,8 @@ fn tournament_selection(
 ) -> Vec<Vec<data::NodeIndex>> {
     let mut survivors = Vec::with_capacity(survivor_number);
 
+    let mut already_chosen: HashSet<u64> = HashSet::with_capacity(population.len());
+
     for _ in 0..survivor_number {
         let winner = loop {
             let x = rng.gen_range(0, population.len());
@@ -108,6 +120,16 @@ fn tournament_selection(
             } else {
                 y
             };
+
+            let hash = {
+                let mut s = DefaultHasher::new();
+                population[better_chromosome_index].hash(&mut s);
+                s.finish()
+            };
+            if already_chosen.contains(&hash) {
+                continue;
+            }
+            already_chosen.insert(hash);
 
             let mut winner = Vec::new();
             mem::swap(&mut winner, &mut population[better_chromosome_index]);
@@ -128,7 +150,9 @@ fn pmx_crossover(
     let mut offspring = parent_b.clone();
 
     let swath_left = rng.gen_range(0, parent_a.len());
-    let swath_right = rng.gen_range(swath_left, parent_a.len());
+    let right_bound = cmp::min(parent_a.len(), swath_left + 5);
+    // let right_bound = parent_a.len();
+    let swath_right = rng.gen_range(swath_left, right_bound);
 
     let swath_range = swath_left..=swath_right;
     let a_swath = &parent_a[swath_range.clone()];
