@@ -28,9 +28,10 @@ pub type IterationNumber = usize;
 pub fn find_best_path(data: &data::Data, iteration_number: IterationNumber) -> BestPath {
     let population_size = ((0.7 * data.index_to_id.len() as f64).powf(2.0)) as usize;
     let survivor_number = (population_size as f64).sqrt() as usize;
+    let elite_survivor_number = 1;
 
     let crossover_rate = 0.7;
-    let mutation_rate = 0.02;
+    let mutation_rate = 0.01;
 
     let mut best_solution_performance = Vec::new();
 
@@ -66,10 +67,26 @@ pub fn find_best_path(data: &data::Data, iteration_number: IterationNumber) -> B
             bar.set_message(&format!("Best result: {}", best_so_far.0));
         }
 
+        let new_population = {
+            let mut x: Vec<_> = population.iter().enumerate().map(|(i, ch)| (chromosome_cost[i], ch)).collect();
+            pdqselect::select_by_key(&mut x, elite_survivor_number, |&(cost, _)| cost); 
+
+            x.truncate(elite_survivor_number);
+            let mut res = Vec::with_capacity(elite_survivor_number + survivor_number);
+            for &(_, ch) in x.iter() {
+                res.push(ch.clone());
+            }
+
+            res
+        };
+
         let survivors =
             tournament_selection(survivor_number, &mut population, &chromosome_cost, &mut rng);
 
-        population.clear();
+
+        population = new_population;
+
+        // population.clear();
 
         for (i, parent_a) in survivors.iter().enumerate() {
             for (j, parent_b) in survivors.iter().enumerate() {
@@ -181,7 +198,7 @@ fn pmx_crossover(
 }
 
 fn mutate(chromosome: &mut Vec<data::NodeIndex>, rng: &mut impl rand::Rng, mutation_rate: f64) {
-    for _ in 0..chromosome.len() / 2 {
+    for _ in 0..chromosome.len() {
         if !rng.gen_bool(mutation_rate) {
             continue;
         }

@@ -7,6 +7,9 @@ cargo build --release
 ./target/release/cvrp-genetic data-sets/F-n45-k4.json 100 | ./parse_results.py
 ```
 
+![](pictures/demo.gif)
+
+
 ## Requirements
 
 * Rust and Cargo: install stable toolchain via https://github.com/rust-lang/rustup.rs
